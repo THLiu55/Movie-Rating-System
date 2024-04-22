@@ -3,7 +3,11 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.json.JSONObject;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,13 +31,33 @@ public class Main {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
         // subscribe to the Kafka topic
-        consumer.subscribe(Collections.singletonList("test-topic"));
+        consumer.subscribe(Collections.singletonList("test-topic1"));
+        // connect to the MySQL server
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/kafka?useSSL=false&serverTimezone=UTC", "root", "shihaotian2002")) {
+            System.out.println("Connected to the MySQL server successfully.");
+            String sql = "INSERT INTO events (id, username, goodsname) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            while (true) {
+                final ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+                for (ConsumerRecord<String, String> record : records) {
+                    JSONObject data = new JSONObject(record.value());
+                    int id = data.getInt("id");
+                    String username = data.getString("username");
+                    String goodsname = data.getString("goodsname");
+                    System.out.println("id: " + id + ", username: " + username + ", goodsname: " + goodsname);
+                    statement.setInt(1, data.getInt("id"));
+                    statement.setString(2, data.getString("username"));
+                    statement.setString(3, data.getString("goodsname"));
+                    statement.executeUpdate();
 
-        while (true) {
-            final ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
-            for (ConsumerRecord<String, String> record : records) {
-                System.out.println(record.key() + " : " + record.value());
+
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error connecting to the MySQL server.");
+            e.printStackTrace();
+
+
         }
     }
 }
