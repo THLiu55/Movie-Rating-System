@@ -4,13 +4,14 @@ Group: Bug
 Members: Tianhao Liu, Xiaoyu Han, Haotian Shi
 
 
-### 1. Introduction
+## Introduction
 
 Using Kafka as message queue.
 Using Springboot for REST API
 Using Redis for caching
 
-### Quick Start
+
+## Quick Start
 
 1. Start Kafka Server (container)
 ```docker-compose up -d```
