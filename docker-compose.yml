@@ -1,22 +1,47 @@
-version: "3.7"
+version: '2'
 services:
-  kafka:
-    image: landoop/fast-data-dev:latest
-    container_name: kafka
-    ports:
-      - 3181:3181
-      - 3040:3040
-      - 7082:7082
-      - 7083:7083
-      - 9092:9092
+  zookeeper-1:
+    image: confluentinc/cp-zookeeper:7.4.4
     environment:
-      ADV_HOST: 127.0.0.1
-      RUNTESTS: 0
-      SAMPLEDATA: 0
-      BROKER_PORT: 9092
-      REST_PORT: 7082
-      CONNECT_PORT: 7083
-      ZK_PORT: 3181
-      WEB_PORT: 3040
-      REGISTRY_PORT: 8081
-    restart: always
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+
+  zookeeper-2:
+    image: confluentinc/cp-zookeeper:7.4.4
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 32181:2181
+  
+  kafka-1:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  kafka-2:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+    ports:
+      - 39092:39092
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092,PLAINTEXT_HOST://localhost:39092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
