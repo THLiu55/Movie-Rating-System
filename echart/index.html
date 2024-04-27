@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 1600px;height:850px;"></div>
+
+  <button id="stopButton">Stop</button>
+  <button id="startButton">Start</button>
+  <button onclick="location.reload();">Clean Chart</button>
+
+  <script type="text/javascript">
+    // Initialize echarts instance
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // Initialize option with empty data
+    var option = {
+      title: {
+        text: 'Popularity of Movie', // Add this line
+        left: 'center', // Add this line
+        textStyle: { color: '#fff' }, // Add this line
+      },
+      backgroundColor: 'black',
+      //speed of the animation
+      animationDuration: 5000,
+      xAxis: {
+        data: [],
+        name: 'Time', // Add this line
+        axisLine: { lineStyle: { color: '#fff' } },
+      },
+      yAxis: {
+        max: 100,
+        name: 'Popularity', // Add this line
+        axisLine: { lineStyle: { color: '#fff' } },
+      },
+      yAxis: {},
+      series: [
+        {
+          name: 'Movie 1',
+          data: [],
+          type: 'line',
+          smooth: true,
+          stack: 'x',
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Max' },
+              { type: 'min', name: 'Min' }
+            ]
+          },
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{a}'
+          }
+
+          
+        },
+        {
+          name: 'Movie 2',
+          data: [],
+          type: 'line',
+          smooth: true,
+          stack: 'x',
+          markPoint: {
+            data: [
+              {type: 'max', name: 'Max'},
+              {type: 'min', name: 'Min'}
+            ]
+          },
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{a}'
+          }
+        },
+        {
+          name: 'Movie 3',
+          data: [],
+          type: 'line',
+          smooth: true,
+          stack: 'x',
+          markPoint: {
+            data: [
+              {type: 'max', name: 'Max'},
+              {type: 'min', name: 'Min'}
+            ]
+          },
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{a}'
+          }
+        }
+      ]
+    };
+
+      // Function to generate random data
+      function fetchDataAndUpdateChart() {
+        $.ajax({
+          url: '/path/to/your/data', // Replace with your server endpoint
+          method: 'GET',
+          success: function (data) {
+            // Get current time
+            var now = new Date();
+            var label = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds();
+
+            // Update option object with new data
+            option.xAxis.data.push(label);
+            option.series[0].data.push(data[0]);
+            option.series[1].data.push(data[1]);
+            option.series[2].data.push(data[2]);
+
+            // Update chart with new data
+            myChart.setOption(option);
+          }
+          
+        });
+        //this are used to test if the chart is working
+        var now = new Date();
+            var label = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds();
+
+            // Update option object with new data
+            option.xAxis.data.push(label);
+            option.series[0].data.push(Math.random() * 10);
+            option.series[1].data.push(Math.random() * 10);
+            option.series[2].data.push(Math.random() * 10);
+
+            // Update chart with new data
+            myChart.setOption(option);
+      }
+
+      // Fetch initial data and update chart
+      fetchDataAndUpdateChart();
+
+      // Update data every second
+
+
+      var intervalId = setInterval(fetchDataAndUpdateChart, 1000);
+
+      
+      document.getElementById('stopButton').onclick = function() {
+        clearInterval(intervalId);
+      };
+      // Start updating data again
+      document.getElementById('startButton').onclick = function() {
+      intervalId = setInterval(fetchDataAndUpdateChart, 1000);
+    };
+    </script>
+</body>
+
+</html>
