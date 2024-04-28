@@ -15,12 +15,17 @@
     <packaging>pom</packaging>
     
 
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <modules>
+
+        
+        <module>database</module>
         <module>redis</module>
+
     </modules>
 
 </project>
