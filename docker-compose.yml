@@ -50,4 +50,16 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    command: redis-server --loglevel warning --requirepass cudikwfgciywbekbuwef
+    command: redis-server --loglevel warning --requirepass cudikwfgciywbekbuwef    
+  mongodb:
+    image: mongo:5.0
+    hostname: localhost
+    command: [--auth]
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=shihaotian2002
+    restart: on-failure
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb:/data/db
