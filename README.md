@@ -28,7 +28,7 @@ For more details about each service and architecture discussions, please read ou
 
 ### Quick Start
 
-Here is the demo video: <a>https://drive.google.com/file/d/1fMrN7aYAmMLYK7ZnsuOBh7sxhD4Je666/view?usp=sharing</a>
+Here is the demo video: <a>https://drive.google.com/file/d/1P_SkUEHuJ0E4hs7-qe1jQWid1_c9iY0C/view?usp=drive_link</a>
 
 <hr>
 
