@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messages</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+<body>
+<h1>Messages</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Review</th>
+        <th>Movie ID</th>
+        <th>Rating</th>
+    </tr>
+    <tr th:each="message : ${messagesPage.content}">
+        <td th:text="${message.id}"></td>
+        <td th:text="${message.review}"></td>
+        <td th:text="${message.movieId}"></td>
+        <td th:text="${message.rating}"></td>
+    </tr>
+</table>
+<p>Page: <span th:text="${messagesPage.number + 1}"></span> / <span th:text="${messagesPage.totalPages}"></span></p>
+<a th:if="${messagesPage.hasPrevious()}" th:href="@{/messages(page=${messagesPage.number-1}, size=${messagesPage.size})}">Previous</a>
+<a th:if="${messagesPage.hasNext()}" th:href="@{/messages(page=${messagesPage.number+1}, size=${messagesPage.size})}">Next</a>
+</body>
+</html>

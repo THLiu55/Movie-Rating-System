@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+</head>
+<body>
+<h1>Search</h1>
+<form action="/search" method="get">
+    <label for="movieId">Movie ID:</label>
+    <input type="text" id="movieId" name="movieId">
+    <input type="submit" value="Search">
+</form>
+<h2>Results</h2>
+<p th:if="${movieId != null}">
+    Movie ID: <span th:text="${movieId}"></span><br>
+    Review Count: <span th:text="${reviewCount}"></span><br>
+    Positive Rating Rate: <span th:text="${positiveRate}"></span>
+</p>
+</body>
+</html>
