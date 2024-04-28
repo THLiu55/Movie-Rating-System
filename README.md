@@ -6,7 +6,7 @@
 >
 > Tianhao Liu | 20205784 | tianhao.liu@ucdconnect.ie / liutianhao328@gmail.com
 >
-> Haotian Shi 
+> Haotian Shi | 20205757 | haotian.shi@ucdconnect.ie / shihaotain2002@gmail.com
 >
 > Xiaoyu Han
 
