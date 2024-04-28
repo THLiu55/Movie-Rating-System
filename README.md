@@ -46,8 +46,6 @@ Here is the demo video: <path to video>
    docker compose up
    ~~~
 
-Build maven project
-```mvn clean install```
 
 2. **Start Predictor Service**
 
