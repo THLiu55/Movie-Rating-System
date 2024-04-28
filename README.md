@@ -24,11 +24,11 @@ To enhance responsiveness and speed, we employ Redis as a high-performance cachi
 
 Moreover, we embrace a modern approach to software architecture by implementing a separation between the front-end and back-end through REST APIs. This enables us to achieve greater modularity, scalability, and maintainability, fostering a robust and adaptable system capable of meeting the evolving needs of our users.
 
-For more details about each service and architecture discussions, please read our report: <path to report>
+For more details about each service and architecture discussions, please read our report in folder `docs`
 
 ### Quick Start
 
-Here is the demo video: <path to video>
+Here is the demo video: <a>https://drive.google.com/file/d/1fMrN7aYAmMLYK7ZnsuOBh7sxhD4Je666/view?usp=sharing</a>
 
 <hr>
 
