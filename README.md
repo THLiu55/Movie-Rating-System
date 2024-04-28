@@ -8,7 +8,7 @@
 >
 > Haotian Shi | 20205757 | haotian.shi@ucdconnect.ie / shihaotain2002@gmail.com
 >
-> Xiaoyu Han
+> Xiaoyu Han  | 20205758 | xiaoyu.han@ucdconnect.ie / xiaoyuhan025@gmail.com
 
 ### Introduction
 
