@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class RedisController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class RedisController {
         return res;
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+ 
     @GetMapping("/getRatings")
     public List<Float> getRatings() {
 
