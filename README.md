@@ -6,9 +6,9 @@
 >
 > Tianhao Liu | 20205784 | tianhao.liu@ucdconnect.ie / liutianhao328@gmail.com
 >
-> Haotian Shi 
+> Haotian Shi | 20205757 | haotian.shi@ucdconnect.ie / shihaotain2002@gmail.com
 >
-> Xiaoyu Han
+> Xiaoyu Han  | 20205758 | xiaoyu.han@ucdconnect.ie / xiaoyuhan025@gmail.com
 
 ### Introduction
 
@@ -24,11 +24,11 @@ To enhance responsiveness and speed, we employ Redis as a high-performance cachi
 
 Moreover, we embrace a modern approach to software architecture by implementing a separation between the front-end and back-end through REST APIs. This enables us to achieve greater modularity, scalability, and maintainability, fostering a robust and adaptable system capable of meeting the evolving needs of our users.
 
-For more details about each service and architecture discussions, please read our report: <path to report>
+For more details about each service and architecture discussions, please read our report in folder `docs`[here](./docs/report.pdf) <a>./docs/report.pdf</a>
 
 ### Quick Start
 
-Here is the demo video: <path to video>
+Here is the demo video: <a>https://drive.google.com/file/d/1P_SkUEHuJ0E4hs7-qe1jQWid1_c9iY0C/view?usp=drive_link</a>
 
 <hr>
 
@@ -46,10 +46,11 @@ Here is the demo video: <path to video>
    docker compose up
    ~~~
 
+
 2. **Start Predictor Service**
 
    ~~~sh
-   cd predictor
+   cd consumer
    
    docker build -t consumer .  
    
@@ -79,7 +80,7 @@ Here is the demo video: <path to video>
 5. **Start Data Collection Service**
 
    ~~~sh
-   cd review_collector
+   cd producer
    
    docker build -t producer . 
    
@@ -99,3 +100,4 @@ Check `http://localhost:8080/messages`
 To search for certain review:
 
 Check `http://localhost:8080/search`
+you can search by move id(1,2,3) and view the total reviews and rate of positive ratings
