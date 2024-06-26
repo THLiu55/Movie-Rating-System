@@ -1,20 +1,6 @@
 # Movie Rating System
 
-> Group: Bug
->
-> **members:** 
->
-> Tianhao Liu | 20205784 | tianhao.liu@ucdconnect.ie / liutianhao328@gmail.com
->
-> Haotian Shi | 20205757 | haotian.shi@ucdconnect.ie / shihaotain2002@gmail.com
->
-> Xiaoyu Han  | 20205758 | xiaoyu.han@ucdconnect.ie / xiaoyuhan025@gmail.com
-
-### Introduction
-
-Imagine us as the world's leading movie review platform, where users from all corners of the globe can express their opinions on various films. Our primary objective is to empower users to evaluate movies and generate personalized recommendation lists based on their preferences and statistical insights.
-
-Harnessing the power of machine learning models, we conduct sentiment analysis on user-contributed data, enabling us to gauge the satisfaction levels of our audience with each film. Our system operates on a distributed microservices architecture, ensuring high performance, fault tolerance, and scalability to meet the demands of our growing user base.
+Imagine us as the world's leading movie review platform, where users from all corners of the globe can express their opinions on various films. Our primary objective is to empower users to evaluate movies and generate personalized recommendation lists based on their preferences and statistical insights. Harnessing the power of machine learning models, we conduct sentiment analysis on user-contributed data, enabling us to gauge the satisfaction levels of our audience with each film. Our system operates on a distributed microservices architecture, ensuring high performance, fault tolerance, and scalability to meet the demands of our growing user base.
 
 ![](./docs/arch_ds.png)
 
